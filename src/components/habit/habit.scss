@@ -1,0 +1,20 @@
+.habit {
+  border-bottom: 1px solid #eee;
+  padding-top: 35px;
+  padding-bottom: 25px;
+
+  .button {
+    margin-right: 10px;
+  }
+
+  .red {
+    background: #e74c3c;
+    color: white;
+    border-color: #c0392b;
+  }
+
+  .lead {
+    font-size: 24px;
+    font-weight: 300;
+  }
+}
