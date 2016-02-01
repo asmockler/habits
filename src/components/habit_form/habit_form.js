@@ -11,8 +11,8 @@ const HabitForm = React.createClass({
 
   render () {
     return (
-      <div className="row">
-        <input type="text" value={this.state.name} onChange={(e) => this.setState({name: e.target.value})} />
+      <div className="HabitForm row">
+        <input type="text" value={this.state.name} onChange={this.handleChange} onKeyDown={this.handleEnter} />
         <a href="#" onClick={this.handleClick}>
           Add
         </a>
@@ -24,6 +24,17 @@ const HabitForm = React.createClass({
     e.preventDefault()
     this.props.onAddClick(this.state.name)
     this.setState({name: ''})
+  },
+
+  handleChange (e) {
+    this.setState({name: e.target.value});
+  },
+
+  handleEnter (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      this.handleClick(e)
+    }
   }
 })
 
