@@ -2,7 +2,7 @@ import '../global.scss';
 
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux'
-import { addHabit, deleteHabit, addDayToHabit } from '../actions/actions'
+import { addHabit, deleteHabit, addDayToHabit, resetHabitDayCount } from '../actions/actions'
 
 import HabitForm from '../components/habit_form/habit_form';
 import HabitsList from '../components/habits_list/habits_list';
@@ -24,6 +24,9 @@ const App = React.createClass({
           }
           onAddDayClick={id =>
             dispatch(addDayToHabit(id))
+          }
+          onResetClick={id =>
+            dispatch(resetHabitDayCount(id))
           } />
       </div>
     )

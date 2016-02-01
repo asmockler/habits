@@ -1,4 +1,9 @@
-import { ADD_HABIT, DELETE_HABIT, ADD_DAY_TO_HABIT } from '../constants/action_types'
+import {
+  ADD_DAY_TO_HABIT,
+  ADD_HABIT,
+  DELETE_HABIT,
+  RESET_HABIT_DAY_COUNT,
+} from '../constants/action_types'
 
 export function addHabit(name) {
   return {
@@ -21,6 +26,15 @@ export function deleteHabit(id) {
 export function addDayToHabit(id) {
   return {
     type: ADD_DAY_TO_HABIT,
+    payload: {
+      id: id
+    }
+  }
+}
+
+export function resetHabitDayCount(id) {
+  return {
+    type: RESET_HABIT_DAY_COUNT,
     payload: {
       id: id
     }

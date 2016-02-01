@@ -10,6 +10,7 @@ const HabitsList = React.createClass({
             key={habit.id}
             onDeleteClick={this.props.onDeleteClick}
             onAddDayClick={this.props.onAddDayClick}
+            onResetClick={this.props.onResetClick}
             {...habit} />
         )}
       </div>
@@ -21,8 +22,9 @@ HabitsList.propTypes = {
   habits: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired
   }).isRequired).isRequired,
+  onAddDayClick: PropTypes.func.isRequired,
   onDeleteClick: PropTypes.func.isRequired,
-  onAddDayClick: PropTypes.func.isRequired
+  onResetClick: PropTypes.func.isRequired,
 }
 
 export default HabitsList;

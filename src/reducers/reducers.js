@@ -1,7 +1,12 @@
 import { combineReducers } from 'redux'
 import { generateGUID } from '../utilities/generate_guid'
 import { getIndexById } from '../utilities/get_index_by_id'
-import { ADD_HABIT, DELETE_HABIT, ADD_DAY_TO_HABIT } from '../constants/action_types'
+import {
+  ADD_DAY_TO_HABIT,
+  ADD_HABIT,
+  DELETE_HABIT,
+  RESET_HABIT_DAY_COUNT,
+} from '../constants/action_types'
 
 function habit (state, action) {
   switch (action.type) {
@@ -9,6 +14,12 @@ function habit (state, action) {
       return {
         id: generateGUID(),
         name: action.payload.name,
+        numDays: 0
+      }
+    case RESET_HABIT_DAY_COUNT:
+      return {
+        id: state.id,
+        name: state.name,
         numDays: 0
       }
     default:
@@ -39,6 +50,13 @@ function habits (state = [], action) {
         }),
         ...state.slice(index + 1)
       ]
+    case RESET_HABIT_DAY_COUNT:
+     index = getIndexById(state, action.payload.id)
+     return [
+       ...state.slice(0, index),
+       habit(state[index], action),
+       ...state.slice(index + 1)
+     ]
     default:
       return state;
   }
