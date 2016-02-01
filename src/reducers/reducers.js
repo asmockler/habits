@@ -10,6 +10,12 @@ import {
 
 function habit (state, action) {
   switch (action.type) {
+    case ADD_DAY_TO_HABIT:
+      return {
+        id: state.id,
+        name: state.name,
+        numDays: ++state.numDays
+      }
     case ADD_HABIT:
       return {
         id: generateGUID(),
@@ -45,9 +51,7 @@ function habits (state = [], action) {
       index = getIndexById(state, action.payload.id)
       return [
         ...state.slice(0, index),
-        Object.assign({}, state[index], {
-          numDays: ++state[index].numDays
-        }),
+        habit(state[index], action),
         ...state.slice(index + 1)
       ]
     case RESET_HABIT_DAY_COUNT:
