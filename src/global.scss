@@ -1,18 +1,31 @@
 body {
-  padding-top: 20px;
+  font-family: 'Raleway', Arial;
+  background: #FEFEFE;
 }
 
+/**
+ * Grid stuff
+ */
+.container {
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+}
+
+/**
+ * TYPOGRAPHY
+ */
 h1 {
   font-weight: 100;
-}
-
-.app-header {
-  font-size: 75px;
-}
-
-.button-primary {
-  transition: background 0.15s;
-  -o-transition: background 0.15s;
-  -moz-transition: background 0.15s;
-  -webkit-transition: background 0.15s;
+  color: #777;
+  text-transform: uppercase;
+  font-size: 40px;
+  letter-spacing: 40px;
+  margin: 30px 0 50px;
 }

@@ -1,44 +1,34 @@
 import './habit_form.scss';
-
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { PropTypes } from 'react'
 
 const HabitForm = React.createClass({
-  getInitialState : function () {
-    return { habitName: '', habitGoal: 0 }
+  getInitialState () {
+    return {
+      name: '',
+      numDays: 0
+    }
   },
 
-  handleNameChange: function(e) {
-    this.setState({habitName: e.target.value});
+  render () {
+    return (
+      <div className="row">
+        <input type="text" value={this.state.name} onChange={(e) => this.setState({name: e.target.value})} />
+        <a href="#" onClick={this.handleClick}>
+          Add
+        </a>
+      </div>
+    )
   },
 
-  handleGoalChange : function (e) {
-    this.setState({habitGoal: e.target.value});
-  },
-
-  handleSubmit : function (e) {
-    e.preventDefault();
-    this.props.addHabit(this.state.habitName, this.state.habitGoal);
-    this.setState({habitName: ''});
-  },
-
-  render : function () {
-    return(
-      <form onSubmit={this.handleSubmit}>
-        <div className="row">
-          <div className="eight columns">
-            <input className="u-full-width" type="text" value={this.state.habitName} onChange={this.handleNameChange} placeholder="New Habit" />
-          </div>
-          <div className="two columns">
-            <input className="u-full-width" type="number" name="habitGoal" value={this.state.habitGoal} onChange={this.handleGoalChange} placeholder="Goal (num days)" />
-          </div>
-          <div className="two columns">
-            <input className="button-primary u-full-width" type="submit" value="Add" />
-          </div>
-        </div>
-      </form>
-    );
+  handleClick (e) {
+    e.preventDefault()
+    this.props.onAddClick(this.state.name)
+    this.setState({name: ''})
   }
-});
+})
+
+HabitForm.propTypes = {
+  onAddClick: PropTypes.func.isRequired
+}
 
 export default HabitForm;

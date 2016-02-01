@@ -1,53 +1,28 @@
-import NormalizeCSS from 'normalize.css';
-import Skeleton from 'skeleton-css/css/skeleton.css';
-import './global.scss';
+import React from 'react'
+import { render } from 'react-dom'
+import { createStore, compose } from 'redux'
+import { Provider } from 'react-redux'
+import persistState from 'redux-localstorage'
+import App from './containers/app'
+import habitsApp from './reducers/reducers'
 
-import React from 'react';
-import ReactDOM from 'react-dom';
+// Create a redux store that persists to localStorage
+const createPersistentStore = compose(
+  persistState()
+)(createStore)
 
-import HabitForm from './components/habit_form/habit_form';
-import HabitsList from './components/habits_list/habits_list';
+// Check if there is an existing state to hydrate the store
+const existingState = window.localStorage["redux-localstorage"]
+const initialState = existingState ? JSON.parse(existingState) : undefined
 
-import Data from './services/data';
+// Create the store with the habits reducer and an optional initial state for
+// returning users.
+const store = createPersistentStore(habitsApp, initialState)
 
-const Application = React.createClass({
-  getInitialState : function () {
-    var initialHabits = Data.getHabits();
-    return {habits : initialHabits};
-  },
-
-  updateHabits : function () {
-    this.setState({habits : Data.getHabits()});
-  },
-
-  addHabit : function (habitName, habitGoal) {
-    Data.saveHabit({name: habitName, consecutiveDays : 0, goal: habitGoal}, function () {
-      this.updateHabits();
-    }.bind(this));
-  },
-
-  setDays : function (habitName, numDays) {
-    Data.setDays(habitName, numDays, function () {
-      this.updateHabits();
-    }.bind(this));
-  },
-
-  deleteHabit : function (habitName) {
-    Data.deleteHabit(habitName, function () {
-      this.updateHabits();
-    }.bind(this));
-  },
-
-  render : function () {
-    return (
-      <div className="container">
-        <h1 className="app-header" onClick={this.testing}>Habits</h1>
-        <HabitForm addHabit={this.addHabit} />
-        <HabitsList habits={this.state.habits} deleteHabit={this.deleteHabit} setDays={this.setDays} />
-      </div>
-    );
-  }
-});
-
-if (!localStorage.habits) localStorage.habits = JSON.stringify([]);
-ReactDOM.render(<Application />, document.getElementById('main'));
+// Render the app to the browser
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('main')
+)

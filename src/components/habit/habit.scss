@@ -1,20 +1,65 @@
-.habit {
-  border-bottom: 1px solid #eee;
-  padding-top: 35px;
-  padding-bottom: 25px;
+.Habit {
+  padding: 60px 0 30px;
+  border-bottom: 1px solid #E0E0E0;
 
-  .button {
-    margin-right: 10px;
+  .numDaysBox {
+    width: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    p {
+      font-weight: 300;
+      color: #777;
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+
+      &.num {
+        font-size: 30px;
+      }
+    }
   }
 
-  .red {
-    background: #e74c3c;
-    color: white;
-    border-color: #c0392b;
+  h2 {
+    margin: 0 0 0 20px;
+    align-self: center;
+    font-weight: 100;
+    font-size: 40px;
+    color: #777;
   }
 
-  .lead {
-    font-size: 24px;
-    font-weight: 300;
+  .buttons {
+    padding-top: 30px;
+
+    a {
+      padding: 9px 20px;
+      margin: 0 20px 0 0;
+      border: 1px solid #777;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: #777;
+
+      transition: border 0.5s, color 0.25s;
+
+      &:first-of-type:hover {
+        color: #00ABFA;
+        border: 1px solid #00ABFA;
+      }
+
+      &:nth-of-type(2):hover {
+        color: #FF9D0A;
+        border: 1px solid #FF9D0A;
+      }
+
+      &:last-of-type:hover {
+        color: #FA0019;
+        border: 1px solid #FA0019;
+      }
+    }
   }
 }
