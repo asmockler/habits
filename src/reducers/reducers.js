@@ -38,8 +38,8 @@ function habits (state = [], action) {
   switch (action.type) {
     case ADD_HABIT:
       return [
-        ...state,
-        habit(undefined, action)
+        habit(undefined, action),
+        ...state
       ]
     case DELETE_HABIT:
       index = getIndexById(state, action.payload.id)
