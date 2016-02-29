@@ -1,6 +1,11 @@
 .Habit {
-  padding: 60px 0 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   border-bottom: 1px solid #E0E0E0;
+  height: auto;
+  max-height: 250px;
+  padding: 55px 0;
 
   .numDaysBox {
     width: 50px;
@@ -24,7 +29,7 @@
   }
 
   h2 {
-    margin: 0 0 0 20px;
+    margin: 0 0 0 30px;
     align-self: center;
     font-weight: 100;
     font-size: 40px;
@@ -32,10 +37,10 @@
   }
 
   .buttons {
-    padding-top: 30px;
-
+    padding-top: 25px;
+    
     a {
-      padding: 9px 20px;
+      padding: 9px 20px!important;
       margin: 0 20px 0 0;
       border: 1px solid #777;
       border-radius: 4px;
