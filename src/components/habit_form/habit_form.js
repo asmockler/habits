@@ -22,6 +22,9 @@ const HabitForm = React.createClass({
 
   handleClick (e) {
     e.preventDefault()
+
+    if (this.state.name === '') return;
+    
     this.props.onAddClick(this.state.name)
     this.setState({name: ''})
   },
