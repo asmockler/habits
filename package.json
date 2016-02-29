@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --progress --profile --colors",
-    "watch": "webpack-dev-server --hot --inline --progress --colors",
+    "start": "webpack-dev-server --hot --inline --progress --colors",
     "deploy": "NODE_ENV=production webpack -p --config webpack.production.config.js"
   },
   "repository": {
